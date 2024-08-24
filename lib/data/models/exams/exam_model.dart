@@ -1,6 +1,6 @@
-import 'package:enem_app/data/models/discipline_model.dart';
-import 'package:enem_app/data/models/language_model.dart';
-import 'package:enem_app/domain/entities/exam_entity.dart';
+import 'package:enem_app/data/models/exams/discipline_model.dart';
+import 'package:enem_app/data/models/exams/language_model.dart';
+import 'package:enem_app/domain/entities/exams/exam_entity.dart';
 
 class ExamModel extends ExamEntity {
   const ExamModel({

@@ -1,4 +1,4 @@
-import 'package:enem_app/domain/entities/exam_entity.dart';
+import 'package:enem_app/domain/entities/exams/exam_entity.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ExamState extends Equatable{

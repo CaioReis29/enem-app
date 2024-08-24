@@ -1,4 +1,4 @@
-import 'package:enem_app/domain/entities/discipline_entity.dart';
+import 'package:enem_app/domain/entities/exams/discipline_entity.dart';
 
 class DisciplineModel extends DisciplineEntity {
   DisciplineModel({required super.label, required super.value});

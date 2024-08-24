@@ -1,5 +1,5 @@
-import 'package:enem_app/domain/entities/discipline_entity.dart';
-import 'package:enem_app/domain/entities/language_entity.dart';
+import 'package:enem_app/domain/entities/exams/discipline_entity.dart';
+import 'package:enem_app/domain/entities/exams/language_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class ExamEntity extends Equatable{

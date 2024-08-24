@@ -31,10 +31,6 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () => context.pushNamed(AppRoutes.exams),
               ),
               AppPrimaryButton(
-                text: "Visualizar questões",
-                onPressed: () {},
-              ),
-              AppPrimaryButton(
                 text: "Praticar questões",
                 onPressed: () {},
               ),

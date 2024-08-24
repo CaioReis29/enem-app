@@ -1,5 +1,5 @@
-import 'package:enem_app/core/exeptions/failure.dart';
-import 'package:enem_app/domain/entities/exam_entity.dart';
+import 'package:enem_app/core/exceptions/failure.dart';
+import 'package:enem_app/domain/entities/exams/exam_entity.dart';
 import 'package:enem_app/domain/repositories/exams/exam_repository.dart';
 import 'package:enem_app/domain/usecases/core/usecase.dart';
 import 'package:multiple_result/multiple_result.dart';

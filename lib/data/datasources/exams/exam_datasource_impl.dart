@@ -1,9 +1,9 @@
 
 import 'package:dio/dio.dart';
 import 'package:enem_app/core/api_urls.dart';
-import 'package:enem_app/core/exeptions/failure.dart';
+import 'package:enem_app/core/exceptions/failure.dart';
 import 'package:enem_app/data/datasources/exams/exam_datasource.dart';
-import 'package:enem_app/data/models/exam_model.dart';
+import 'package:enem_app/data/models/exams/exam_model.dart';
 
 class ExamDatasourceImpl extends ExamDatasource {
   final Dio dio;

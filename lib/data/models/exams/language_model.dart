@@ -1,5 +1,5 @@
 
-import 'package:enem_app/domain/entities/language_entity.dart';
+import 'package:enem_app/domain/entities/exams/language_entity.dart';
 
 class LanguageModel extends LanguageEntity {
   LanguageModel({required super.label, required super.value});

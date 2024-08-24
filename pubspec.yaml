@@ -19,6 +19,7 @@ dependencies:
   internet_connection_checker: ^2.0.0
   multiple_result: ^5.1.0
   google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:

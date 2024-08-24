@@ -1,8 +1,8 @@
-import 'package:enem_app/core/exeptions/failure.dart';
+import 'package:enem_app/core/exceptions/failure.dart';
 import 'package:enem_app/data/datasources/exams/exam_datasource.dart';
 import 'package:enem_app/data/datasources/network/network_info.dart';
-import 'package:enem_app/data/models/exam_model.dart';
-import 'package:enem_app/domain/entities/exam_entity.dart';
+import 'package:enem_app/data/models/exams/exam_model.dart';
+import 'package:enem_app/domain/entities/exams/exam_entity.dart';
 import 'package:enem_app/domain/repositories/exams/exam_repository.dart';
 import 'package:multiple_result/multiple_result.dart';
 

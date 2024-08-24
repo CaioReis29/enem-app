@@ -7,10 +7,12 @@ import 'package:enem_app/core/themes/app_color.dart';
 import 'package:enem_app/core/themes/app_text_style.dart';
 import 'package:enem_app/domain/entities/exams/exam_entity.dart';
 import 'package:enem_app/presentation/components/app_primary_button.dart';
+import 'package:enem_app/presentation/components/app_shimmer.dart';
 import 'package:enem_app/presentation/controllers/exams/exam_state.dart';
 import 'package:enem_app/presentation/controllers/exams/exams_controller.dart';
 import 'package:enem_app/presentation/pages/questions/questions_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ExamsPage extends StatefulWidget {
 
@@ -131,11 +133,19 @@ class _ExamsPageState extends State<ExamsPage> with SingleNotifierMixin {
                     );
                   },
                 ),
-                 LoadingExamState() => CircularProgressIndicator
-                  .adaptive(
-                    backgroundColor: AppColor.primary,
-                    valueColor: const AlwaysStoppedAnimation(Colors.white),
-                  ).centralized(),
+                 LoadingExamState() => ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: AppShimmer(
+                        isRounded: true,
+                        height: 400, 
+                        width: context.getWidth(),
+                      ),
+                    );
+                  },
+                ),
                  FailureExamState(:String msg) => Text(msg).centralized(),
                  _ => const Text("Erro desconhecido").centralized(),
                },

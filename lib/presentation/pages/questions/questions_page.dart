@@ -4,6 +4,7 @@ import 'package:enem_app/core/extensions/widget_position_extension.dart';
 import 'package:enem_app/core/mixins/single_notifier_mixin.dart';
 import 'package:enem_app/core/themes/app_color.dart';
 import 'package:enem_app/core/themes/app_text_style.dart';
+import 'package:enem_app/presentation/components/app_shimmer.dart';
 import 'package:enem_app/presentation/controllers/questions/questions_controller.dart';
 import 'package:enem_app/presentation/controllers/questions/questions_state.dart';
 import 'package:flutter/material.dart';
@@ -57,11 +58,19 @@ class _QuestionsPageState extends State<QuestionsPage> with SingleNotifierMixin 
            appBar: AppBar(title: const Text('Questões')),
            body: SafeArea(
             child: switch (_controller.value) {
-              LoadingQuestionsState() => CircularProgressIndicator
-                  .adaptive(
-                    backgroundColor: AppColor.primary,
-                    valueColor: const AlwaysStoppedAnimation(Colors.white),
-                  ).centralized(),
+              LoadingQuestionsState() => ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: AppShimmer(
+                        isRounded: true,
+                        height: 400, 
+                        width: context.getWidth(),
+                      ),
+                    );
+                  },
+                ),
               FailureQuestionsState(:String msg) => Text(msg).centralized(),
               _ => Padding(
                 padding: const EdgeInsets.all(8.0),

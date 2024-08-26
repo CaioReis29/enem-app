@@ -41,12 +41,6 @@ class _QuestionsPageState extends State<QuestionsPage> with MultipleNotifierMixi
     super.initState();
   }
 
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
    @override
    Widget build(BuildContext context) {
        return Scaffold(
@@ -59,131 +53,111 @@ class _QuestionsPageState extends State<QuestionsPage> with MultipleNotifierMixi
             ),
           ),
            body: SafeArea(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 400),
-               transitionBuilder: (child, animation) {
-                 final offsetAnimation = Tween<Offset>(
-                 begin: const Offset(1.0, 0.0),
-                 end: Offset.zero,
-                 ).animate(
-                   CurvedAnimation(
-                   parent: animation,
-                   curve: Curves.linearToEaseOut,
-                 ));
-                 
-                 return SlideTransition(
-                   position: offsetAnimation,
-                   child: child,
-                 );
-               },
-              child: switch (_controller.value) {
-                LoadingQuestionsState() => ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: AppShimmer(
-                          isRounded: true,
-                          height: 400, 
-                          width: context.getWidth(),
-                        ),
-                      );
-                    },
-                  ),
-                FailureQuestionsState(:String msg) => Text(msg).centralized(),
-                _ => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                    key: UniqueKey(),
-                    controller: _scrollController,
-                    itemCount: _controller.hasMore 
-                      ? _controller.questionEntity.questions.length + 1 
-                      : _controller.questionEntity.questions.length,
-                    itemBuilder: (context, index) {
-                      if (index < _controller.questionEntity.questions.length) {
-                        final question = _controller.questionEntity.questions[index];
-                        final content = parseContent(question.context ?? "", context);
-                        return Card(
-                          key: ValueKey(UniqueKey()),
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 20, right: 10, left: 10, top: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(question.title, style: AppTextStyle.poppinsW800s24).centralized(),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("${question.discipline}"),
-                                    if (question.language != null) const Text(" - "),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: question.language != null ? AppColor.redPrimary : Colors.transparent,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      padding: const EdgeInsets.all(5),
-                                      child: Text(question.language ?? "", style: TextStyle(color: AppColor.white)),
+            child: switch (_controller.value) {
+              LoadingQuestionsState() => ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: AppShimmer(
+                        isRounded: true,
+                        height: 400, 
+                        width: context.getWidth(),
+                      ),
+                    );
+                  },
+                ),
+              FailureQuestionsState(:String msg) => Text(msg).centralized(),
+              _ => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: _controller.hasMore 
+                    ? _controller.questionEntity.questions.length + 1 
+                    : _controller.questionEntity.questions.length,
+                  itemBuilder: (context, index) {
+                    if (index < _controller.questionEntity.questions.length) {
+                      final question = _controller.questionEntity.questions[index];
+                      final content = parseContent(question.context ?? "", context);
+                      return Card(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20, right: 10, left: 10, top: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(question.title, style: AppTextStyle.poppinsW800s24).centralized(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("${question.discipline}"),
+                                  if (question.language != null) const Text(" - "),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: question.language != null ? AppColor.redPrimary : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                  ],
-                                ),
-                                const SizedBox(height: 25),
-                                Column(
-                                  children: content,
-                                ),
-                                if (question.alternativesIntroduction != null) ... [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 20),
-                                    child: Text("- ${question.alternativesIntroduction ?? ""}", style: AppTextStyle.poppinsW500s20),
+                                    padding: const EdgeInsets.all(5),
+                                    child: Text(question.language ?? "", style: TextStyle(color: AppColor.white)),
                                   ),
                                 ],
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: question.alternatives.map((a) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text.rich(
-                                        style: AppTextStyle.poppinsW500s18,
-                                        TextSpan(
-                                          children: [
-                                            WidgetSpan(
-                                              child: Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                                                decoration: BoxDecoration(
-                                                  color: a.isCorrect ? Colors.green : AppColor.primary,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                ),
-                                                child: Text(" ${a.letter} ", style: AppTextStyle.poppinsW500s20.copyWith(color: AppColor.white)),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: " ${a.text}",
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
+                              ),
+                              const SizedBox(height: 25),
+                              Column(
+                                children: content,
+                              ),
+                              if (question.alternativesIntroduction != null) ... [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 20),
+                                  child: Text("- ${question.alternativesIntroduction ?? ""}", style: AppTextStyle.poppinsW500s20),
                                 ),
                               ],
-                            ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: question.alternatives.map((a) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text.rich(
+                                      style: AppTextStyle.poppinsW500s18,
+                                      TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: a.isCorrect ? Colors.green : AppColor.primary,
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                              child: Text(" ${a.letter} ", style: AppTextStyle.poppinsW500s20.copyWith(color: AppColor.white)),
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: " ${a.text}",
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
                           ),
-                        );
-                      } else {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              backgroundColor: AppColor.primary,
-                              valueColor: AlwaysStoppedAnimation(_theme.isDarkMode ? AppColor.white : AppColor.black),
-                            ),
+                        ),
+                      );
+                    } else {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: AppColor.primary,
+                            valueColor: AlwaysStoppedAnimation(_theme.isDarkMode ? AppColor.white : AppColor.black),
                           ),
-                        );
-                      }
-                    },
-                  ),
+                        ),
+                      );
+                    }
+                  },
                 ),
-              },
-            )
+              ),
+            }
            ),
        );
   }

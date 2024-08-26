@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:enem_app/core/themes/app_theme.dart';
 import 'package:enem_app/data/datasources/exams/exam_datasource.dart';
 import 'package:enem_app/data/datasources/exams/exam_datasource_impl.dart';
 import 'package:enem_app/data/datasources/network/network_info.dart';
@@ -6,6 +7,7 @@ import 'package:enem_app/data/datasources/questions/question_datasource.dart';
 import 'package:enem_app/data/datasources/questions/question_datasource_impl.dart';
 import 'package:enem_app/data/repositories/exams/exam_repository_impl.dart';
 import 'package:enem_app/data/repositories/questions/questions_repository_impl.dart';
+import 'package:enem_app/data/shared/shared_preference_service.dart';
 import 'package:enem_app/domain/repositories/exams/exam_repository.dart';
 import 'package:enem_app/domain/repositories/questions/questions_repository.dart';
 import 'package:enem_app/domain/usecases/exams/get_exams.dart';
@@ -14,10 +16,17 @@ import 'package:enem_app/presentation/controllers/exams/exams_controller.dart';
 import 'package:enem_app/presentation/controllers/questions/questions_controller.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt getIt = GetIt.instance;
 
 Future<void> setUpContainer() async {
+  final SharedPreferences shared = await SharedPreferences.getInstance();
+
+  getIt.registerLazySingleton<SharedPreferenceService>(() => SharedPreferenceService(shared));
+
+  getIt.registerSingleton<AppTheme>(AppTheme());
+  
   getIt.registerLazySingleton<Dio>(() => Dio());
 
   getIt.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker());
@@ -45,5 +54,5 @@ void questions() {
 
   getIt.registerLazySingleton<GetQuestions>(() => GetQuestions(repository: getIt<QuestionsRepository>()));
 
-  getIt.registerFactory(() => QuestionsController(getQuestions: getIt<GetQuestions>()));
+  getIt.registerFactory<QuestionsController>(() => QuestionsController(getQuestions: getIt<GetQuestions>()));
 }

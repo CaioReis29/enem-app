@@ -1,4 +1,3 @@
-import 'package:enem_app/core/themes/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class AppPrimaryButton extends StatelessWidget {
@@ -49,7 +48,7 @@ class AppPrimaryButton extends StatelessWidget {
                       flex: hasWidget ? 0 : 1, 
                       child: child ?? Text(
                         text, 
-                        style: textStyle ?? AppTextStyle.poppinsW600s18, 
+                        style: textStyle ?? Theme.of(context).primaryTextTheme.bodyMedium, 
                         textAlign: TextAlign.center,
                         ),
                       ),

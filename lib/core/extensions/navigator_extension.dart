@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 extension NavigatorExtension on BuildContext {
+
+  void pop() {
+    Navigator.pop(this);
+  }
+
   void push(Widget widgetRoute) {
     Navigator.push(
       this, 

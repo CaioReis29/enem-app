@@ -40,9 +40,10 @@ class _HomePageState extends State<HomePage> with SingleNotifierMixin {
           child: Column(
             children: [
               Image.asset(
-                "assets/enem_logo.png", 
+                "assets/enem_flow.png", 
                 height: context.getHeight() * 0.4,
               ),
+              const SizedBox(height: 10),
               const SizedBox(height: 10),
               AppPrimaryButton(
                 text: "Visualizar lista de exames", 

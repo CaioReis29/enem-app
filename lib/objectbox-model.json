@@ -90,17 +90,196 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "4:782040531926693790",
+      "lastPropertyId": "5:5973090978971733312",
+      "name": "AlternativesEntity",
+      "properties": [
+        {
+          "id": "1:4210412156066569786",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8986343992275502717",
+          "name": "letter",
+          "type": 9
+        },
+        {
+          "id": "3:30939936505632625",
+          "name": "text",
+          "type": 9
+        },
+        {
+          "id": "4:6758639012319139119",
+          "name": "file",
+          "type": 9
+        },
+        {
+          "id": "5:5973090978971733312",
+          "name": "isCorrect",
+          "type": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:1464150122458821994",
+      "lastPropertyId": "6:1671959995252857812",
+      "name": "MetadataEntity",
+      "properties": [
+        {
+          "id": "1:925373589234416595",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3096584766068657868",
+          "name": "limit",
+          "type": 6
+        },
+        {
+          "id": "3:3621190977118478720",
+          "name": "offset",
+          "type": 6
+        },
+        {
+          "id": "4:3332161322642121916",
+          "name": "total",
+          "type": 6
+        },
+        {
+          "id": "5:2512875044545918439",
+          "name": "hasMore",
+          "type": 1
+        },
+        {
+          "id": "6:1671959995252857812",
+          "name": "relationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "6:5495485804670320680",
+          "relationTarget": "QuestionsEntity"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:152180502358394739",
+      "lastPropertyId": "12:7887616316607806467",
+      "name": "QuestionEntity",
+      "properties": [
+        {
+          "id": "1:3259609031171413898",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:908452988972810689",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "3:4063337559737332914",
+          "name": "index",
+          "type": 6
+        },
+        {
+          "id": "4:6893143989180589484",
+          "name": "discipline",
+          "type": 9
+        },
+        {
+          "id": "5:3864900820856679205",
+          "name": "language",
+          "type": 9
+        },
+        {
+          "id": "6:6624664357075217522",
+          "name": "year",
+          "type": 6
+        },
+        {
+          "id": "7:320210016239187092",
+          "name": "context",
+          "type": 9
+        },
+        {
+          "id": "8:8051991117956162425",
+          "name": "files",
+          "type": 30
+        },
+        {
+          "id": "10:1427937403198527381",
+          "name": "alternativesIntroduction",
+          "type": 9
+        },
+        {
+          "id": "11:5832672484753016407",
+          "name": "questionsId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:8088538963191890749",
+          "relationTarget": "QuestionsEntity"
+        },
+        {
+          "id": "12:7887616316607806467",
+          "name": "correctAlternative",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:1276943081965974115",
+          "name": "alternatives",
+          "targetId": "4:782040531926693790"
+        }
+      ]
+    },
+    {
+      "id": "7:4779513931215668639",
+      "lastPropertyId": "2:4050269470759873392",
+      "name": "QuestionsEntity",
+      "properties": [
+        {
+          "id": "1:9054713763150774603",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4050269470759873392",
+          "name": "metaDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "5:4187727714217331171",
+          "relationTarget": "MetadataEntity"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:5675268360909691202",
-  "lastIndexId": "2:7817492634972837897",
-  "lastRelationId": "0:0",
+  "lastEntityId": "8:3187042573110144091",
+  "lastIndexId": "6:5495485804670320680",
+  "lastRelationId": "1:1276943081965974115",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
-  "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredEntityUids": [
+    3187042573110144091
+  ],
+  "retiredIndexUids": [
+    30939164632206595
+  ],
+  "retiredPropertyUids": [
+    3734735514412603962,
+    5547825897438092258,
+    182512043882577743
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

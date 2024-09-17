@@ -1,14 +1,14 @@
 flutter_native_splash:
   color: "#FFFFFF"
   color_dark: "#140000"
-  image: "assets/enem_logo.png"
-  image_dark: "assets/enem_logo.png"
+  image: "assets/enem_flow_logo.png"
+  image_dark: "assets/enem_flow_logo.png"
   android: true
   ios: true
 
   android_12:
     color: "#FFFFFF"
     color_dark: "#140000"
-    image: "assets/enem_logo.png"
-    image_dark: "assets/enem_logo.png"
+    image: "assets/enem_flow_logo.png"
+    image_dark: "assets/enem_flow_logo.png"
   web: false

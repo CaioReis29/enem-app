@@ -1,15 +1,22 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:enem_app/core/themes/app_theme.dart';
 import 'package:enem_app/data/datasources/exams/exam_datasource.dart';
 import 'package:enem_app/data/datasources/exams/exam_datasource_impl.dart';
 import 'package:enem_app/data/datasources/exams/exam_local_datasource.dart';
+import 'package:enem_app/data/datasources/exams/exam_local_datasource_imp.dart';
 import 'package:enem_app/data/datasources/network/network_info.dart';
 import 'package:enem_app/data/datasources/questions/question_datasource.dart';
 import 'package:enem_app/data/datasources/questions/question_datasource_impl.dart';
+import 'package:enem_app/data/datasources/questions/question_local_datasource.dart';
+import 'package:enem_app/data/datasources/questions/question_local_datasource_imp.dart';
 import 'package:enem_app/data/repositories/exams/exam_repository_impl.dart';
 import 'package:enem_app/data/repositories/questions/questions_repository_impl.dart';
 import 'package:enem_app/data/shared/shared_preference_service.dart';
 import 'package:enem_app/domain/entities/exams/exam_entity.dart';
+import 'package:enem_app/domain/entities/questions/question_entity.dart';
+import 'package:enem_app/domain/entities/questions/questions_entity.dart';
 import 'package:enem_app/domain/repositories/exams/exam_repository.dart';
 import 'package:enem_app/domain/repositories/questions/questions_repository.dart';
 import 'package:enem_app/domain/usecases/exams/get_exams.dart';
@@ -29,11 +36,15 @@ Future<void> setUpContainer() async {
 
   var dir = await getApplicationDocumentsDirectory();
 
-  Store store = await openStore(directory: dir.path,);
+  Store store = await openStore(directory: dir.path);
 
-  getIt.registerLazySingleton(() => store.box<ExamEntity>(),);
+  getIt.registerLazySingleton(() => store.box<ExamEntity>());
 
-  getIt.registerLazySingleton<SharedPreferenceService>(() => SharedPreferenceService(shared),);
+  getIt.registerLazySingleton(() => store.box<QuestionsEntity>());
+
+  getIt.registerLazySingleton(() => store.box<QuestionEntity>());
+
+  getIt.registerLazySingleton<SharedPreferenceService>(() => SharedPreferenceService(shared));
 
   getIt.registerSingleton<AppTheme>(AppTheme());
   
@@ -42,23 +53,29 @@ Future<void> setUpContainer() async {
 
     final dio = Dio(options);
 
-    dio.interceptors.addAll([LogInterceptor(responseBody: true, requestBody: true,)]);
+    dio.interceptors.addAll([
+      LogInterceptor(
+        logPrint: (object) {
+          log(object.toString(), name: "DIO LOG'S");
+        },
+    ),
+  ]);
 
     return dio;
   });
 
   getIt.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker(),);
 
-  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetChecker: getIt<InternetConnectionChecker>(),));
+  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetChecker: getIt<InternetConnectionChecker>()));
 
   exams();
   questions();
 }
 
 void exams() {
-  getIt.registerLazySingleton(() => ExamLocalDatasource(examBox: getIt()));
+  getIt.registerLazySingleton<ExamLocalDatasource>(() => ExamLocalDatasourceImp(examBox: getIt()));
 
-  getIt.registerLazySingleton<ExamDatasource>(() => ExamDatasourceImpl(dio: getIt<Dio>(),));
+  getIt.registerLazySingleton<ExamDatasource>(() => ExamDatasourceImpl(dio: getIt<Dio>()));
 
   getIt.registerLazySingleton<ExamRepository>(() => ExamRepositoryImpl(
     datasource: getIt<ExamDatasource>(), 
@@ -66,20 +83,27 @@ void exams() {
     localDatasource: getIt<ExamLocalDatasource>(),
   ));
 
-  getIt.registerLazySingleton<GetExams>(() => GetExams(repository: getIt<ExamRepository>(),));
+  getIt.registerLazySingleton<GetExams>(() => GetExams(repository: getIt<ExamRepository>()));
 
-  getIt.registerFactory(() => ExamsController(getExams: getIt<GetExams>(),));
+  getIt.registerFactory(() => ExamsController(getExams: getIt<GetExams>()));
 }
 
 void questions() {
-  getIt.registerLazySingleton<QuestionDatasource>(() => QuestionDatasourceImpl(dio: getIt<Dio>(),));
+  getIt.registerLazySingleton<QuestionLocalDatasource>(() => QuestionLocalDatasourceImp(
+    questionsBox: getIt(), 
+    questionBox: getIt(),
+  ));
+
+  getIt.registerLazySingleton<QuestionDatasource>(() => QuestionDatasourceImpl(dio: getIt<Dio>()));
 
   getIt.registerLazySingleton<QuestionsRepository>(() => QuestionsRepositoryImpl(
     datasource: getIt<QuestionDatasource>(), 
     networkInfo: getIt<NetworkInfo>(),
+    localDatasource: getIt<QuestionLocalDatasource>(),
   ));
 
-  getIt.registerLazySingleton<GetQuestions>(() => GetQuestions(repository: getIt<QuestionsRepository>(),));
+  getIt.registerLazySingleton<GetQuestions>(() => GetQuestions(repository: getIt<QuestionsRepository>()));
 
-  getIt.registerFactory<QuestionsController>(() => QuestionsController(getQuestions: getIt<GetQuestions>(),));
+  getIt.registerFactory<QuestionsController>(() => QuestionsController(getQuestions: getIt<GetQuestions>()));
+
 }

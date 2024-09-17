@@ -9,10 +9,15 @@ abstract class Failure extends Equatable{
 
 class NoConnection extends Failure{
   @override
-  String get msg => "Oops! You not have connection!";
+  String get msg => "Oops! Você não tem conexão à internet!";
 }
 
 class ApiFailure extends Failure {
   @override
-  String get msg => "Sorry! It waas not possible to acess the Server. Try again later.";
+  String get msg => "Desculpe! No momento não é possível acessar o servidor. Tente novamente mais tarde...";
+}
+
+class LocalDBNotFound extends Failure {
+  @override
+  String get msg => "Desculpe! Não foi possível acessar os dados offline, procure acesso à internet e carregue os dados.";
 }

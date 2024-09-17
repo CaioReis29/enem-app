@@ -33,7 +33,7 @@ class ExamRepositoryImpl implements ExamRepository {
         final exams = localDatasource.getExams();
         return Success(exams);
       } catch (e) {
-        return Error(NoConnection());
+        return Error(ApiFailure());
       }
     }
   }

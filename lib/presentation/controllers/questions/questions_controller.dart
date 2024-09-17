@@ -31,7 +31,7 @@ class QuestionsController extends ValueNotifier<QuestionsState> {
       case Success():
         questionEntity = result.success;
         value = SuccessQuestionsState(questions: questionEntity);
-        hasMore = result.success.metaData.hasMore;
+        if(result.success.metaData.target != null) hasMore = questionEntity.metaData.target!.hasMore;
       case Error():
         value = FailureQuestionsState(result.error.msg);
     }
@@ -53,7 +53,7 @@ class QuestionsController extends ValueNotifier<QuestionsState> {
       case Success():
         questionEntity.questions.addAll(result.success.questions);
         value = SuccessPaginationState(questions: questionEntity);
-        hasMore = result.success.metaData.hasMore;
+        if(result.success.metaData.target != null) hasMore = result.success.metaData.target!.hasMore;
       case Error():
         value = FailureQuestionsState(result.error.msg);
     }

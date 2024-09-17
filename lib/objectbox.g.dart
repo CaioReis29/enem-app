@@ -17,6 +17,10 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 import 'domain/entities/exams/discipline_entity.dart';
 import 'domain/entities/exams/exam_entity.dart';
 import 'domain/entities/exams/language_entity.dart';
+import 'domain/entities/questions/alternatives_entity.dart';
+import 'domain/entities/questions/metadata_entity.dart';
+import 'domain/entities/questions/question_entity.dart';
+import 'domain/entities/questions/questions_entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -111,6 +115,178 @@ final _entities = <obx_int.ModelEntity>[
             name: 'disciplines', srcEntity: 'DisciplineEntity', srcField: ''),
         obx_int.ModelBacklink(
             name: 'languages', srcEntity: 'LanguageEntity', srcField: '')
+      ]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(4, 782040531926693790),
+      name: 'AlternativesEntity',
+      lastPropertyId: const obx_int.IdUid(5, 5973090978971733312),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 4210412156066569786),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 8986343992275502717),
+            name: 'letter',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 30939936505632625),
+            name: 'text',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 6758639012319139119),
+            name: 'file',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 5973090978971733312),
+            name: 'isCorrect',
+            type: 1,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(5, 1464150122458821994),
+      name: 'MetadataEntity',
+      lastPropertyId: const obx_int.IdUid(6, 1671959995252857812),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 925373589234416595),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 3096584766068657868),
+            name: 'limit',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 3621190977118478720),
+            name: 'offset',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 3332161322642121916),
+            name: 'total',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 2512875044545918439),
+            name: 'hasMore',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 1671959995252857812),
+            name: 'relationId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(6, 5495485804670320680),
+            relationTarget: 'QuestionsEntity')
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(6, 152180502358394739),
+      name: 'QuestionEntity',
+      lastPropertyId: const obx_int.IdUid(12, 7887616316607806467),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 3259609031171413898),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 908452988972810689),
+            name: 'title',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 4063337559737332914),
+            name: 'index',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 6893143989180589484),
+            name: 'discipline',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 3864900820856679205),
+            name: 'language',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 6624664357075217522),
+            name: 'year',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 320210016239187092),
+            name: 'context',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 8051991117956162425),
+            name: 'files',
+            type: 30,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(10, 1427937403198527381),
+            name: 'alternativesIntroduction',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(11, 5832672484753016407),
+            name: 'questionsId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(4, 8088538963191890749),
+            relationTarget: 'QuestionsEntity'),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(12, 7887616316607806467),
+            name: 'correctAlternative',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[
+        obx_int.ModelRelation(
+            id: const obx_int.IdUid(1, 1276943081965974115),
+            name: 'alternatives',
+            targetId: const obx_int.IdUid(4, 782040531926693790))
+      ],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(7, 4779513931215668639),
+      name: 'QuestionsEntity',
+      lastPropertyId: const obx_int.IdUid(2, 4050269470759873392),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 9054713763150774603),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 4050269470759873392),
+            name: 'metaDataId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(5, 4187727714217331171),
+            relationTarget: 'MetadataEntity')
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[
+        obx_int.ModelBacklink(
+            name: 'questions',
+            srcEntity: 'QuestionEntity',
+            srcField: 'questions')
       ])
 ];
 
@@ -149,13 +325,17 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(3, 5675268360909691202),
-      lastIndexId: const obx_int.IdUid(2, 7817492634972837897),
-      lastRelationId: const obx_int.IdUid(0, 0),
+      lastEntityId: const obx_int.IdUid(8, 3187042573110144091),
+      lastIndexId: const obx_int.IdUid(6, 5495485804670320680),
+      lastRelationId: const obx_int.IdUid(1, 1276943081965974115),
       lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredEntityUids: const [3187042573110144091],
+      retiredIndexUids: const [30939164632206595],
+      retiredPropertyUids: const [
+        3734735514412603962,
+        5547825897438092258,
+        182512043882577743
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -278,6 +458,220 @@ obx_int.ModelDefinition getObjectBoxModel() {
               obx_int.RelInfo<LanguageEntity>.toOneBacklink(
                   4, object.id, (LanguageEntity srcObject) => srcObject.exam));
           return object;
+        }),
+    AlternativesEntity: obx_int.EntityDefinition<AlternativesEntity>(
+        model: _entities[3],
+        toOneRelations: (AlternativesEntity object) => [],
+        toManyRelations: (AlternativesEntity object) => {},
+        getId: (AlternativesEntity object) => object.id,
+        setId: (AlternativesEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (AlternativesEntity object, fb.Builder fbb) {
+          final letterOffset = fbb.writeString(object.letter);
+          final textOffset =
+              object.text == null ? null : fbb.writeString(object.text!);
+          final fileOffset =
+              object.file == null ? null : fbb.writeString(object.file!);
+          fbb.startTable(6);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, letterOffset);
+          fbb.addOffset(2, textOffset);
+          fbb.addOffset(3, fileOffset);
+          fbb.addBool(4, object.isCorrect);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final letterParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final textParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 8);
+          final fileParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final isCorrectParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false);
+          final object = AlternativesEntity(
+              id: idParam,
+              letter: letterParam,
+              text: textParam,
+              file: fileParam,
+              isCorrect: isCorrectParam);
+
+          return object;
+        }),
+    MetadataEntity: obx_int.EntityDefinition<MetadataEntity>(
+        model: _entities[4],
+        toOneRelations: (MetadataEntity object) => [object.relation],
+        toManyRelations: (MetadataEntity object) => {},
+        getId: (MetadataEntity object) => object.id,
+        setId: (MetadataEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (MetadataEntity object, fb.Builder fbb) {
+          fbb.startTable(7);
+          fbb.addInt64(0, object.id);
+          fbb.addInt64(1, object.limit);
+          fbb.addInt64(2, object.offset);
+          fbb.addInt64(3, object.total);
+          fbb.addBool(4, object.hasMore);
+          fbb.addInt64(5, object.relation.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final limitParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
+          final offsetParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final totalParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final hasMoreParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false);
+          final object = MetadataEntity(
+              id: idParam,
+              limit: limitParam,
+              offset: offsetParam,
+              total: totalParam,
+              hasMore: hasMoreParam);
+          object.relation.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
+          object.relation.attach(store);
+          return object;
+        }),
+    QuestionEntity: obx_int.EntityDefinition<QuestionEntity>(
+        model: _entities[5],
+        toOneRelations: (QuestionEntity object) => [object.questions],
+        toManyRelations: (QuestionEntity object) => {
+              obx_int.RelInfo<QuestionEntity>.toMany(1, object.id):
+                  object.alternatives
+            },
+        getId: (QuestionEntity object) => object.id,
+        setId: (QuestionEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (QuestionEntity object, fb.Builder fbb) {
+          final titleOffset = fbb.writeString(object.title);
+          final disciplineOffset = object.discipline == null
+              ? null
+              : fbb.writeString(object.discipline!);
+          final languageOffset = object.language == null
+              ? null
+              : fbb.writeString(object.language!);
+          final contextOffset =
+              object.context == null ? null : fbb.writeString(object.context!);
+          final filesOffset = fbb.writeList(
+              object.files.map(fbb.writeString).toList(growable: false));
+          final alternativesIntroductionOffset =
+              object.alternativesIntroduction == null
+                  ? null
+                  : fbb.writeString(object.alternativesIntroduction!);
+          final correctAlternativeOffset =
+              fbb.writeString(object.correctAlternative);
+          fbb.startTable(13);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, titleOffset);
+          fbb.addInt64(2, object.index);
+          fbb.addOffset(3, disciplineOffset);
+          fbb.addOffset(4, languageOffset);
+          fbb.addInt64(5, object.year);
+          fbb.addOffset(6, contextOffset);
+          fbb.addOffset(7, filesOffset);
+          fbb.addOffset(9, alternativesIntroductionOffset);
+          fbb.addInt64(10, object.questions.targetId);
+          fbb.addOffset(11, correctAlternativeOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final titleParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final indexParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final disciplineParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 10);
+          final languageParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 12);
+          final yearParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
+          final contextParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGetNullable(buffer, rootOffset, 16);
+          final filesParam = const fb.ListReader<String>(
+                  fb.StringReader(asciiOptimization: true),
+                  lazy: false)
+              .vTableGet(buffer, rootOffset, 18, []);
+          final correctAlternativeParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 26, '');
+          final alternativesIntroductionParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGetNullable(buffer, rootOffset, 22);
+          final object = QuestionEntity(
+              id: idParam,
+              title: titleParam,
+              index: indexParam,
+              discipline: disciplineParam,
+              language: languageParam,
+              year: yearParam,
+              context: contextParam,
+              files: filesParam,
+              correctAlternative: correctAlternativeParam,
+              alternativesIntroduction: alternativesIntroductionParam);
+          object.questions.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 24, 0);
+          object.questions.attach(store);
+          obx_int.InternalToManyAccess.setRelInfo<QuestionEntity>(
+              object.alternatives,
+              store,
+              obx_int.RelInfo<QuestionEntity>.toMany(1, object.id));
+          return object;
+        }),
+    QuestionsEntity: obx_int.EntityDefinition<QuestionsEntity>(
+        model: _entities[6],
+        toOneRelations: (QuestionsEntity object) => [object.metaData],
+        toManyRelations: (QuestionsEntity object) => {
+              obx_int.RelInfo<QuestionEntity>.toOneBacklink(11, object.id,
+                      (QuestionEntity srcObject) => srcObject.questions):
+                  object.questions
+            },
+        getId: (QuestionsEntity object) => object.id,
+        setId: (QuestionsEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (QuestionsEntity object, fb.Builder fbb) {
+          fbb.startTable(3);
+          fbb.addInt64(0, object.id);
+          fbb.addInt64(1, object.metaData.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final object = QuestionsEntity(id: idParam);
+          object.metaData.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
+          object.metaData.attach(store);
+          obx_int.InternalToManyAccess.setRelInfo<QuestionsEntity>(
+              object.questions,
+              store,
+              obx_int.RelInfo<QuestionEntity>.toOneBacklink(11, object.id,
+                  (QuestionEntity srcObject) => srcObject.questions));
+          return object;
         })
   };
 
@@ -344,4 +738,125 @@ class ExamEntity_ {
   /// see [ExamEntity.languages]
   static final languages =
       obx.QueryBacklinkToMany<LanguageEntity, ExamEntity>(LanguageEntity_.exam);
+}
+
+/// [AlternativesEntity] entity fields to define ObjectBox queries.
+class AlternativesEntity_ {
+  /// See [AlternativesEntity.id].
+  static final id =
+      obx.QueryIntegerProperty<AlternativesEntity>(_entities[3].properties[0]);
+
+  /// See [AlternativesEntity.letter].
+  static final letter =
+      obx.QueryStringProperty<AlternativesEntity>(_entities[3].properties[1]);
+
+  /// See [AlternativesEntity.text].
+  static final text =
+      obx.QueryStringProperty<AlternativesEntity>(_entities[3].properties[2]);
+
+  /// See [AlternativesEntity.file].
+  static final file =
+      obx.QueryStringProperty<AlternativesEntity>(_entities[3].properties[3]);
+
+  /// See [AlternativesEntity.isCorrect].
+  static final isCorrect =
+      obx.QueryBooleanProperty<AlternativesEntity>(_entities[3].properties[4]);
+}
+
+/// [MetadataEntity] entity fields to define ObjectBox queries.
+class MetadataEntity_ {
+  /// See [MetadataEntity.id].
+  static final id =
+      obx.QueryIntegerProperty<MetadataEntity>(_entities[4].properties[0]);
+
+  /// See [MetadataEntity.limit].
+  static final limit =
+      obx.QueryIntegerProperty<MetadataEntity>(_entities[4].properties[1]);
+
+  /// See [MetadataEntity.offset].
+  static final offset =
+      obx.QueryIntegerProperty<MetadataEntity>(_entities[4].properties[2]);
+
+  /// See [MetadataEntity.total].
+  static final total =
+      obx.QueryIntegerProperty<MetadataEntity>(_entities[4].properties[3]);
+
+  /// See [MetadataEntity.hasMore].
+  static final hasMore =
+      obx.QueryBooleanProperty<MetadataEntity>(_entities[4].properties[4]);
+
+  /// See [MetadataEntity.relation].
+  static final relation =
+      obx.QueryRelationToOne<MetadataEntity, QuestionsEntity>(
+          _entities[4].properties[5]);
+}
+
+/// [QuestionEntity] entity fields to define ObjectBox queries.
+class QuestionEntity_ {
+  /// See [QuestionEntity.id].
+  static final id =
+      obx.QueryIntegerProperty<QuestionEntity>(_entities[5].properties[0]);
+
+  /// See [QuestionEntity.title].
+  static final title =
+      obx.QueryStringProperty<QuestionEntity>(_entities[5].properties[1]);
+
+  /// See [QuestionEntity.index].
+  static final index =
+      obx.QueryIntegerProperty<QuestionEntity>(_entities[5].properties[2]);
+
+  /// See [QuestionEntity.discipline].
+  static final discipline =
+      obx.QueryStringProperty<QuestionEntity>(_entities[5].properties[3]);
+
+  /// See [QuestionEntity.language].
+  static final language =
+      obx.QueryStringProperty<QuestionEntity>(_entities[5].properties[4]);
+
+  /// See [QuestionEntity.year].
+  static final year =
+      obx.QueryIntegerProperty<QuestionEntity>(_entities[5].properties[5]);
+
+  /// See [QuestionEntity.context].
+  static final context =
+      obx.QueryStringProperty<QuestionEntity>(_entities[5].properties[6]);
+
+  /// See [QuestionEntity.files].
+  static final files =
+      obx.QueryStringVectorProperty<QuestionEntity>(_entities[5].properties[7]);
+
+  /// See [QuestionEntity.alternativesIntroduction].
+  static final alternativesIntroduction =
+      obx.QueryStringProperty<QuestionEntity>(_entities[5].properties[8]);
+
+  /// See [QuestionEntity.questions].
+  static final questions =
+      obx.QueryRelationToOne<QuestionEntity, QuestionsEntity>(
+          _entities[5].properties[9]);
+
+  /// See [QuestionEntity.correctAlternative].
+  static final correctAlternative =
+      obx.QueryStringProperty<QuestionEntity>(_entities[5].properties[10]);
+
+  /// see [QuestionEntity.alternatives]
+  static final alternatives =
+      obx.QueryRelationToMany<QuestionEntity, AlternativesEntity>(
+          _entities[5].relations[0]);
+}
+
+/// [QuestionsEntity] entity fields to define ObjectBox queries.
+class QuestionsEntity_ {
+  /// See [QuestionsEntity.id].
+  static final id =
+      obx.QueryIntegerProperty<QuestionsEntity>(_entities[6].properties[0]);
+
+  /// See [QuestionsEntity.metaData].
+  static final metaData =
+      obx.QueryRelationToOne<QuestionsEntity, MetadataEntity>(
+          _entities[6].properties[1]);
+
+  /// see [QuestionsEntity.questions]
+  static final questions =
+      obx.QueryBacklinkToMany<QuestionEntity, QuestionsEntity>(
+          QuestionEntity_.questions);
 }

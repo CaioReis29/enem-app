@@ -14,8 +14,10 @@ class QuestionModel extends QuestionEntity {
     required super.files,
     required super.correctAlternative,
     super.alternativesIntroduction,
-    required super.alternatives,
-  });
+    List<AlternativesModel>? alternatives,
+  }) {
+    this.alternatives.addAll(alternatives ?? []);
+  }
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
@@ -28,8 +30,7 @@ class QuestionModel extends QuestionEntity {
       files: (json["files"] as List<dynamic>).map((j) {
         return jsonEncode(j);
       }).toList(),
-      correctAlternative: CorrectAlternative.values.firstWhere(
-        (e) => e.toString().split('.').last == json["correctAlternative"],),
+      correctAlternative: json["correctAlternative"],
       alternativesIntroduction: json["alternativesIntroduction"],
       alternatives: (json["alternatives"] as List<dynamic>?)
               ?.map((j) => AlternativesModel.fromJson(j as Map<String, dynamic>))

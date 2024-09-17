@@ -1,5 +1,6 @@
 
 class AppRoutes {
+  static String get splash => "splash";
   static String get home => "home";
   static String get exams => "exams";
   static String get questions => "questions";

@@ -44,13 +44,13 @@ flutter:
     - assets/
 
 icons_launcher:
-  image_path: "assets/enem_logo.png"
+  image_path: "assets/enem_flow_logo.png"
   platforms:
     android: 
-      image_path: "assets/enem_logo.png"
+      image_path: "assets/enem_flow_logo.png"
       enable: true
       adaptive_background_color: "#140000"
-      adaptive_foreground_image: "assets/enem_logo.png"
+      adaptive_foreground_image: "assets/enem_flow_logo.png"
     ios:
       enable: true
-      image_path: "assets/enem_logo.png"
+      image_path: "assets/enem_flow_logo.png"

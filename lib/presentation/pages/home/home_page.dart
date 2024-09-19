@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> with SingleNotifierMixin {
               ),
               AppPrimaryButton(
                 text: "Praticar questões",
-                onPressed: () {},
+                onPressed: () => context.pushNamed(AppRoutes.selectOptionsToPratice),
               ),
               const Spacer(),
               const Padding(

@@ -23,8 +23,9 @@ import 'package:enem_app/domain/usecases/exams/get_exams.dart';
 import 'package:enem_app/domain/usecases/exams/get_questions.dart';
 import 'package:enem_app/objectbox.g.dart';
 import 'package:enem_app/presentation/controllers/exams/exams_controller.dart';
+import 'package:enem_app/presentation/controllers/pratice/pratice_controller.dart';
 import 'package:enem_app/presentation/controllers/questions/questions_controller.dart';
-import 'package:enem_app/presentation/controllers/to_pratice/to_pratice_controller.dart';
+import 'package:enem_app/presentation/controllers/select_options/select_options_controller.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -110,5 +111,7 @@ void questions() {
 }
 
 void toPratice() {
-  getIt.registerLazySingleton(() => ToPraticeController(getExams: getIt<GetExams>()));
+  getIt.registerLazySingleton(() => SelectOptionsController(getExams: getIt<GetExams>()));
+
+  getIt.registerLazySingleton(() => PraticeController(getQuestions: getIt<GetQuestions>()));
 }

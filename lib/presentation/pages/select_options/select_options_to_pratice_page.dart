@@ -9,9 +9,9 @@ import 'package:enem_app/domain/entities/exams/exam_entity.dart';
 import 'package:enem_app/domain/entities/exams/language_entity.dart';
 import 'package:enem_app/presentation/components/app_primary_button.dart';
 import 'package:enem_app/presentation/components/app_shimmer.dart';
-import 'package:enem_app/presentation/controllers/to_pratice/to_pratice_controller.dart';
-import 'package:enem_app/presentation/controllers/to_pratice/to_pratice_state.dart';
-import 'package:enem_app/presentation/pages/to_pratice/to_pratice_page.dart';
+import 'package:enem_app/presentation/controllers/select_options/select_options_controller.dart';
+import 'package:enem_app/presentation/controllers/select_options/select_options_state.dart';
+import 'package:enem_app/presentation/pages/pratice/to_pratice_page.dart';
 import 'package:flutter/material.dart';
 
 class SelectOptionsToPraticePage extends StatefulWidget {
@@ -24,7 +24,7 @@ class SelectOptionsToPraticePage extends StatefulWidget {
 
 class _SelectOptionsToPraticePageState extends State<SelectOptionsToPraticePage> with SingleNotifierMixin {
 
-  final _controller = getIt<ToPraticeController>();
+  final _controller = getIt<SelectOptionsController>();
 
   ExamEntity? selectedExam;
   List<LanguageEntity>? examLanguages;
@@ -52,7 +52,7 @@ class _SelectOptionsToPraticePageState extends State<SelectOptionsToPraticePage>
             ),
           ),
            body: switch (_controller.value) {
-             SuccessToPraticeState(:List<ExamEntity> exams) => SingleChildScrollView(
+             SuccessSelectOptionsState(:List<ExamEntity> exams) => SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -130,7 +130,7 @@ class _SelectOptionsToPraticePageState extends State<SelectOptionsToPraticePage>
                 ),
               ),
             ),
-            LoadingToPraticeState() => Padding(
+            LoadingSelectOptionsState() => Padding(
               padding: const EdgeInsets.all(20),
               child: SingleChildScrollView(
                 child: Column(
@@ -157,7 +157,7 @@ class _SelectOptionsToPraticePageState extends State<SelectOptionsToPraticePage>
                 ),
               ),
             ),
-            FailureToPraticeState(:String msg) => Text(msg).centralized(),
+            FailureSelectOptionsState(:String msg) => Text(msg).centralized(),
             _ => const Text("Erro desconhecido").centralized(),
            }
        );

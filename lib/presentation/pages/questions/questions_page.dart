@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:enem_app/core/di/container_injections.dart';
 import 'package:enem_app/core/extensions/navigator_extension.dart';
 import 'package:enem_app/core/extensions/screen_size_extension.dart';
@@ -184,16 +185,19 @@ class _QuestionsPageState extends State<QuestionsPage> with MultipleNotifierMixi
               c.getHeight() * 0.4, 
               width: c.getWidth(),
               fit: BoxFit.fill,
+              placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
             ),
           ));
         } else {
           contentWidgets.add(Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Image.network(
-              imageUrl, 
-              height: c.getHeight() * 0.4, 
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              height: c.getHeight() * 0.4,
               width: c.getWidth(),
               fit: BoxFit.fill,
+              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ));
         }

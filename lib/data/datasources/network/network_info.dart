@@ -6,7 +6,7 @@ abstract class NetworkInfo {
 }
 
 class NetworkInfoImpl implements NetworkInfo {
-  final InternetConnection internetChecker;
+  late InternetConnection internetChecker;
 
   NetworkInfoImpl({required this.internetChecker});
 

@@ -27,7 +27,7 @@ import 'package:enem_app/presentation/controllers/pratice/pratice_controller.dar
 import 'package:enem_app/presentation/controllers/questions/questions_controller.dart';
 import 'package:enem_app/presentation/controllers/select_options/select_options_controller.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -66,9 +66,9 @@ Future<void> setUpContainer() async {
     return dio;
   });
 
-  getIt.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker(),);
+  getIt.registerLazySingleton<InternetConnection>(() => InternetConnection(),);
 
-  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetChecker: getIt<InternetConnectionChecker>()));
+  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetChecker: getIt<InternetConnection>()));
 
   exams();
   questions();

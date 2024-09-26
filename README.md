@@ -1,16 +1,58 @@
-# enem_app
+<h1 align="center"> 🎓 EnemFlow</h1>
 
-A new Flutter project.
 
-## Getting Started
+## :memo: Descrição:
 
-This project is a starting point for a Flutter application.
+<p>Aplicativo para estudar e praticar a prova do ENEM com questões reais.</p>
 
-A few resources to get you started if this is your first Flutter project:
+## :wrench: Tecnologias utilizadas
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Dart](https://img.shields.io/badge/Dart-0D1117?style=for-the-badge&logo=dart&logoColor=0175C2)&nbsp;<br>
+![Flutter](https://img.shields.io/badge/Flutter-0D1117?style=for-the-badge&logo=flutter&logoColor=0175C2)&nbsp;<br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ⚠️ OBS:
+
+ Para rodar aplicações flutter, certifique-se se sua máquina possui as seguintes tecnologias:
+- DART SDK
+- FLUTTER SDK
+- Um device físico (seu celular conectado por um USB) ou um emulador (como o android studio)
+
+## :rocket: Rodando o projeto
+
+```bash
+  # Clone o Repositório
+  $ git clone https://github.com/CaioReis29/enemflow.git
+```
+```bash
+  # Entre na pasta clonada
+  $ cd enem_app
+```
+
+```bash
+  # Instale as dependências necessárias para rodar o projeto usando este comando
+  $ flutter pub get ou fvm flutter pub get
+```
+
+
+```bash
+  # Conecte o device com a IDE que você está usando (InteliJ, Android Studio ou VS Code)
+```
+
+```bash
+  # Com todas as dependências nesserárias, basta voltar para o primeiro terminal e digitar o comando
+  $ flutter run ou fvm flutter run
+```
+
+## :handshake: Colaboradores
+<table>
+  <tr>
+    <td align="center">
+      <a href="http://github.com/CaioReis29">
+        <img src="https://github.com/CaioReis29.png" width="100px;" alt="Caio Reis"/><br>
+        <sub>
+          <b>Caio Reis</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>

@@ -77,13 +77,13 @@ class _SelectOptionsToPraticePageState extends State<SelectOptionsToPraticePage>
                       },
                     ),
                     const SizedBox(height: 30),
-                    Text("Linguagem", style: AppTextStyle.poppinsW500s24),
-                    const SizedBox(height: 20),
                     if(
                       selectedExam != null 
                       && examLanguages != null 
                       && examLanguages!.isNotEmpty
                       ) ... [
+                      Text("Linguagem", style: AppTextStyle.poppinsW500s24),
+                      const SizedBox(height: 20),
                       ...examLanguages!.map((LanguageEntity language) {
                         return RadioListTile<String>(
                           title: Text(language.label, style: AppTextStyle.poppinsW400s18),
@@ -98,9 +98,9 @@ class _SelectOptionsToPraticePageState extends State<SelectOptionsToPraticePage>
                         );
                       }),
                       const SizedBox(height: 30),
-                      Text("Nível de dificuldade", style: AppTextStyle.poppinsW500s24),
-                      const SizedBox(height: 20),
                     ],
+                    Text("Nível de dificuldade", style: AppTextStyle.poppinsW500s24),
+                    const SizedBox(height: 20),
                     ...examLevels.map((String exam) {
                       return RadioListTile<String>(
                         title: Text(exam, style: AppTextStyle.poppinsW400s18),

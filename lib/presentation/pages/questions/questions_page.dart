@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:enem_app/core/di/container_injections.dart';
 import 'package:enem_app/core/extensions/navigator_extension.dart';
 import 'package:enem_app/core/extensions/screen_size_extension.dart';
@@ -7,11 +6,11 @@ import 'package:enem_app/core/mixins/multiple_notifier_mixin.dart';
 import 'package:enem_app/core/themes/app_color.dart';
 import 'package:enem_app/core/themes/app_text_style.dart';
 import 'package:enem_app/core/themes/app_theme.dart';
+import 'package:enem_app/core/utils/enem_utils.dart';
 import 'package:enem_app/presentation/components/app_shimmer.dart';
 import 'package:enem_app/presentation/controllers/questions/questions_controller.dart';
 import 'package:enem_app/presentation/controllers/questions/questions_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class QuestionsPage extends StatefulWidget {
   final String year;
@@ -79,7 +78,7 @@ class _QuestionsPageState extends State<QuestionsPage> with MultipleNotifierMixi
                   itemBuilder: (context, index) {
                     if (index < _controller.questionEntity.questions.length) {
                       final question = _controller.questionEntity.questions[index];
-                      final content = parseContent(question.context ?? "", context);
+                      final content = EnemUtils.parseContent(question.context ?? "", context);
                       return Card(
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 20, right: 10, left: 10, top: 10),
@@ -161,55 +160,5 @@ class _QuestionsPageState extends State<QuestionsPage> with MultipleNotifierMixi
             }
            ),
        );
-  }
-
-  List<Widget> parseContent(String context, BuildContext c) {
-    final List<Widget> contentWidgets = [];
-    final RegExp regex = RegExp(r"!\[.*?\]\((.*?)\)");
-
-    final Iterable<RegExpMatch> matches = regex.allMatches(context);
-    int previousEnd = 0;
-
-    for (final match in matches) {
-      if (match.start > previousEnd) {
-        contentWidgets.add(Text(context.substring(previousEnd, match.start), style: AppTextStyle.poppinsW600s18));
-      }
-
-      final String? imageUrl = match.group(1);
-      if (imageUrl != null) {
-        if (imageUrl.endsWith('.svg')) {
-          contentWidgets.add(Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: SvgPicture.network(
-              imageUrl, height: 
-              c.getHeight() * 0.4, 
-              width: c.getWidth(),
-              fit: BoxFit.fill,
-              placeholderBuilder: (context) => const Center(child: CircularProgressIndicator()),
-            ),
-          ));
-        } else {
-          contentWidgets.add(Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
-              height: c.getHeight() * 0.4,
-              width: c.getWidth(),
-              fit: BoxFit.fill,
-              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-          ));
-        }
-      }
-
-      previousEnd = match.end;
-    }
-
-    if (previousEnd < context.length) {
-      contentWidgets.add(Text(context.substring(previousEnd), style: AppTextStyle.poppinsW400s18));
-    }
-
-    return contentWidgets;
   }
 }
